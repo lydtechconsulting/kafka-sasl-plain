@@ -1,4 +1,4 @@
-# Kafka Spring Boot SASL Demo Project
+# Kafka Spring Boot SASL PLAIN Demo Project
 
 Spring Boot application demonstrating authenticating with Kafka using SASL PLAIN.
 
