@@ -1,5 +1,5 @@
 # Changelog
 
-## [1.0.0] - 2023-10-25
+## [1.0.0] - 2023-11-21
 ### Added
-- Supports Spring Boot 3, Kafka Clients 3, Java 17.
+- Initial project.
