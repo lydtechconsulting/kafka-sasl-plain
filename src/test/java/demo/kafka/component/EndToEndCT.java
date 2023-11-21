@@ -5,7 +5,7 @@ import java.util.List;
 import demo.kafka.event.DemoInboundEvent;
 import demo.kafka.util.TestData;
 import dev.lydtech.component.framework.client.kafka.KafkaClient;
-import dev.lydtech.component.framework.extension.TestContainersSetupExtension;
+import dev.lydtech.component.framework.extension.ComponentTestExtension;
 import dev.lydtech.component.framework.mapper.JsonMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @Slf4j
-@ExtendWith(TestContainersSetupExtension.class)
+@ExtendWith(ComponentTestExtension.class)
 public class EndToEndCT {
 
     private static final String GROUP_ID = "EndToEndCT";

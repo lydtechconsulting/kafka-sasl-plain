@@ -7,6 +7,10 @@ server:
 
 kafka:
     bootstrap-servers: localhost:9092
+    sasl:
+        enabled: true
+        username: demo
+        password: demo-password
     inboundTopic: "demo-inbound-topic"
     outboundTopic: "demo-outbound-topic"
 

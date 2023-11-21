@@ -1,10 +1,6 @@
 # Kafka Spring Boot SASL Demo Project
 
-...WIP...
-
-...Reminder to make repo public...
-
-Spring Boot application demonstrating authenticating with Kafka using SASL.
+Spring Boot application demonstrating authenticating with Kafka using SASL PLAIN.
 
 ## Run Spring Boot Application
 
@@ -24,7 +20,7 @@ docker-compose up -d
 
 To start the application use:
 ```
-java -jar target/kafka-sasl-1.0.0.jar
+java -jar target/kafka-sasl-plain-1.0.0.jar
 ```
 
 ### Produce an inbound event:
@@ -33,7 +29,7 @@ Produce a message to `demo-inbound-topic`:
 ```
 docker exec -it kafka  /bin/sh /usr/bin/kafka-console-producer \
 --topic demo-inbound-topic \
---broker-list kafka:29092
+--bootstrap-server kafka:29092
 ```
 Now enter the message:
 ```
@@ -61,11 +57,15 @@ Run integration tests with `mvn clean test`
 
 The tests demonstrate sending events to an embedded in-memory Kafka that are consumed by the application, resulting in outbound events being published.
 
+SASL is disabled for the integration tests (in `src/test/resources/application-test.yml` config `kafka.sasl.enabled: false`.  This is because these tests uses the embedded Kafka broker which does not support SASL.
+
 ## Component Tests
 
 ### Overview
 
 The tests demonstrate sending events to a dockerised Kafka that are consumed by the dockerised application, resulting in outbound events being published.
+
+SASL PLAIN authentication is enabled in the Component Test Framework, via the `maven-surefire-plugin` `component` plugin configuration.  `kafka.sasl.plain.enabled` is set to `true`.  This requires that consumers and producers connecting to Kafka authenticate using SASL PLAIN.  This applies to both the application and the test consumers and producers. 
 
 For more on the component tests see: https://github.com/lydtechconsulting/component-test-framework
 
@@ -78,7 +78,7 @@ mvn clean install
 
 Build Docker container:
 ```
-docker build -t ct/kafka-sasl:latest .
+docker build -t ct/kafka-sasl-plain:latest .
 ```
 
 ### Test Execution
