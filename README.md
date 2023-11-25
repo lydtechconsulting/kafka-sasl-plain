@@ -11,7 +11,7 @@ mvn clean install
 
 ### Run Docker Containers
 
-From the root dir run the `docker-compose` files to start dockerised Kafka, Zookeeper, and Conduktor Gateway:
+From the root dir run the `docker-compose` files to start dockerised Kafka, Zookeeper:
 ```
 docker-compose up -d
 ```
