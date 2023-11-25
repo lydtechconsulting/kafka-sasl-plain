@@ -31,7 +31,6 @@ services:
             KAFKA_LISTENER_NAME_INTERNAL_SASL_ENABLED_MECHANISMS: PLAIN
             KAFKA_LISTENER_NAME_EXTERNAL_SASL_ENABLED_MECHANISMS: PLAIN
             KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: PLAIN
-            KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
             KAFKA_LISTENER_NAME_INTERNAL_PLAIN_SASL_JAAS_CONFIG: |
                 org.apache.kafka.common.security.plain.PlainLoginModule required \
                 username="demo" \
@@ -43,3 +42,8 @@ services:
                 password="demo-password" \
                 user_demo="demo-password";
             KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+        volumes:
+            - type: bind
+              source: "./kafka-client-config"
+              target: /kafka-client-config
+              read_only: true

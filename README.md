@@ -16,6 +16,8 @@ From the root dir run the `docker-compose` files to start dockerised Kafka, Zook
 docker-compose up -d
 ```
 
+This binds the `./kafka-client-config/client.properties` file, in the root of this project, to the Kafka container.  This properties file contains the SASL configuration required for the Kafka command line tools to successfully authenticate with Kafka when producing and consuming events.
+
 ### Start Demo Spring Boot Application
 
 To start the application use:
@@ -27,9 +29,10 @@ java -jar target/kafka-sasl-plain-1.0.0.jar
 
 Produce a message to `demo-inbound-topic`:
 ```
-docker exec -it kafka  /bin/sh /usr/bin/kafka-console-producer \
+docker exec -it kafka kafka-console-producer \
 --topic demo-inbound-topic \
---bootstrap-server kafka:29092
+--bootstrap-server kafka:29092 \
+--producer.config /kafka-client-config/client.properties
 ```
 Now enter the message:
 ```
@@ -41,9 +44,10 @@ The demo-inbound message is consumed by the application, which emits a resulting
 
 Check for the emitted message on the `demo-outbound-topic`:
 ```
-docker exec -it kafka  /bin/sh /usr/bin/kafka-console-consumer \
+docker exec -it kafka kafka-console-consumer \
 --topic demo-outbound-topic \
 --bootstrap-server kafka:29092 \
+--consumer.config /kafka-client-config/client.properties \
 --from-beginning
 ```
 Output:
