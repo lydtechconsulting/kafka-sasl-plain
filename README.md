@@ -2,6 +2,8 @@
 
 Spring Boot application demonstrating authenticating with Kafka using SASL PLAIN.
 
+This repo accompanies the article [Kafka SASL Authentication: Spring Boot Demo](https://www.lydtechconsulting.com/blog-kafka-sasl-authentication.html).
+
 ## Run Spring Boot Application
 
 ### Build
